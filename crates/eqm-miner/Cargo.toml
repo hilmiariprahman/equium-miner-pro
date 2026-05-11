@@ -29,3 +29,4 @@ dotenvy = { workspace = true }
 rayon = { workspace = true }
 rand = { workspace = true }
 hex = { workspace = true }
+bincode = "1.3"
