@@ -20,13 +20,12 @@ clap = { workspace = true }
 anyhow = { workspace = true }
 tokio = { workspace = true }
 reqwest = { workspace = true }
-num_cpus = "1.16"
 serde = { workspace = true }
 serde_json = { workspace = true }
+sha2 = { workspace = true }
 log = { workspace = true }
 env_logger = { workspace = true }
 dotenvy = { workspace = true }
 rayon = { workspace = true }
 rand = { workspace = true }
 hex = { workspace = true }
-bincode = "1.3"

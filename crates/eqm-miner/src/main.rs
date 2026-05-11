@@ -20,7 +20,7 @@ use std::time::{Duration, Instant};
 use anchor_spl::associated_token::get_associated_token_address_with_program_id;
 use anyhow::{anyhow, Context, Result};
 use clap::{Parser, ValueEnum};
-use equihash_core::challenge::{build_input, solution_hash};
+use equihash_core::challenge::{build_input, solution_hash, I_LEN};
 use equihash_core::solver::{solve, Solution};
 use equihash_core::target::hash_under_target;
 use rayon::prelude::*;
@@ -282,7 +282,7 @@ fn main() -> Result<()> {
 // ============================================================================
 
 fn solve_single_thread(
-    input: &[u8; 81],
+    input: &[u8; I_LEN],
     n: u32, k: u32,
     target: &[u8; 32],
     max_nonces: u64,
@@ -310,7 +310,7 @@ fn solve_single_thread(
 }
 
 fn solve_multi_thread(
-    input: &[u8; 81],
+    input: &[u8; I_LEN],
     n: u32, k: u32,
     target: &[u8; 32],
     max_nonces: u64,
@@ -409,12 +409,10 @@ fn parallel_broadcast(rpcs: &[RpcClient], tx: &Transaction) -> Option<Signature>
     use std::sync::Mutex;
 
     let result: Arc<Mutex<Option<Signature>>> = Arc::new(Mutex::new(None));
-    let serialized = bincode::serialize(tx).ok()?;
 
     std::thread::scope(|s| {
         for rpc in rpcs {
             let result_ref = Arc::clone(&result);
-            let tx_bytes = serialized.clone();
             s.spawn(move || {
                 // send_transaction = fire without waiting for confirm
                 match rpc.send_transaction(tx) {
