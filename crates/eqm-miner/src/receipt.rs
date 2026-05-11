@@ -68,7 +68,7 @@ impl ReceiptMonitor {
         loop {
             std::thread::sleep(POLL_INTERVAL);
 
-            let mut pending = self.pending.lock().unwrap();
+            let pending = self.pending.lock().unwrap();
             if pending.is_empty() {
                 drop(pending);
                 continue;
