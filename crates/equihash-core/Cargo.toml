@@ -1,0 +1,23 @@
+[package]
+name = "equihash-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Equihash solver + verifier + challenge derivation for Equium mining"
+
+[lib]
+crate-type = ["rlib"]
+
+[features]
+default = ["std"]
+std = ["sha2/std", "blake2b_simd/std", "equihash/std"]
+solver = ["std", "dep:hex", "dep:serde", "dep:serde_json", "dep:rand"]
+
+[dependencies]
+equihash = { workspace = true }
+blake2b_simd = { workspace = true }
+sha2 = { workspace = true }
+hex = { workspace = true, optional = true }
+serde = { version = "1", features = ["derive"], optional = true }
+serde_json = { version = "1", optional = true }
+rand = { workspace = true, optional = true }

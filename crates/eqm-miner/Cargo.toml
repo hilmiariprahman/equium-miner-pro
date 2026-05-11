@@ -1,0 +1,31 @@
+[package]
+name = "eqm-miner"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Optimized multi-threaded EQM miner with multi-RPC broadcast"
+
+[[bin]]
+name = "eqm-miner"
+path = "src/main.rs"
+
+[dependencies]
+equihash-core = { path = "../equihash-core", features = ["solver"] }
+anchor-lang = { workspace = true }
+anchor-spl = { workspace = true }
+solana-sdk = { workspace = true }
+solana-client = { workspace = true }
+solana-program = { workspace = true }
+clap = { workspace = true }
+anyhow = { workspace = true }
+tokio = { workspace = true }
+reqwest = { workspace = true }
+num_cpus = "1.16"
+serde = { workspace = true }
+serde_json = { workspace = true }
+log = { workspace = true }
+env_logger = { workspace = true }
+dotenvy = { workspace = true }
+rayon = { workspace = true }
+rand = { workspace = true }
+hex = { workspace = true }

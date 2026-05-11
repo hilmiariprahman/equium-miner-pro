@@ -1,0 +1,39 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/equihash-core",
+    "crates/eqm-miner",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+authors = ["hilmiariprahman"]
+
+[workspace.dependencies]
+anchor-lang = "0.31.1"
+anchor-spl = "0.31.1"
+solana-program = "2.1"
+solana-sdk = "2.1"
+solana-client = "2.1"
+equihash = { version = "0.3", default-features = false }
+blake2b_simd = { version = "1", default-features = false }
+sha2 = { version = "0.10", default-features = false }
+hex = "0.4"
+rand = "0.8"
+rayon = "1.10"
+clap = { version = "4", features = ["derive"] }
+anyhow = "1"
+tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros", "time"] }
+reqwest = { version = "0.12", features = ["json", "blocking"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+log = "0.4"
+env_logger = "0.11"
+dotenvy = "0.15"
+
+[profile.release]
+overflow-checks = true
+lto = "fat"
+codegen-units = 1
